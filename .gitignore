@@ -4,3 +4,4 @@ attach
 .tmp
 .sass-cache
 bower_components
+.idea
