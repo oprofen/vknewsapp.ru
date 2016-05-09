@@ -1,0 +1,19 @@
+
+@media (min-width: 768px) {
+  div.center-block {
+    width: 50%;
+  }
+}
+.imgtest {
+  height:200px !important;
+  width: auto !important;
+}
+p.smallBlockOfText {
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 5px;
+  text-overflow: ellipsis;
+}
+p.smallBlockOfText  > br{
+  display:none;
+}

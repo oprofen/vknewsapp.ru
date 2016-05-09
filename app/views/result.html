@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="row" style="background-color: #9acfea; padding-bottom: 20px; padding-top: 20px;">
+    <div class="col-sm-offset-2 col-xs-12 col-sm-8">
+      <div class="input-group">
+        <a class="input-group-addon" ui-sref="app" style="background-color: #0000FF; color:#ffffff;">VK</a>
+        <input
+          ng-model="query"
+          ng-model-options="{ debounce: 500 }"
+          type="text" class="form-control form-control-large">
+      </div>
+
+    </div>
+    <div class="col-xs-12 col-sm-2">
+      <a class="btn btn-primary" ng-click="search();">Поиск</a>
+    </div>
+  </div>
+  <div class="row" style="padding-top: 20px">
+    <div class="col-sm-offset-2 col-xs-12 col-sm-8">
+      <p ng-bind-html="aim"></p>
+      <div class="alert alert-danger" ng-show="showError" ng-bind-html="errorMsg"></div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-offset-2 col-xs-12 col-sm-8">
+      <div class="thumbnail" ng-repeat="item in news">
+        <div class="caption">
+          <h4 class="text-center" ng-bind-html="author(item.author)">
+          </h4>
+          <p>
+            <span class="label label-info" ng-bind-html="likes(item.likes)"></span>
+            <span class="badge" ng-bind-html="date(item.date)"></span></p>
+          <p class="smallBlockOfText text-justify" ng-bind-html="item.text"></p>
+          <a href class="btn btn-primary  btn-xs" ng-click="openNews(item.id);" role="button">Открыть новость</a>
+        </div>
+        <div ng-if="item.images" style="height: 205px">
+          <uib-carousel active="0" interval="5000">
+            <uib-slide ng-repeat="slide in item.images track by slide.id" index="slide.id">
+              <a href ng-click="openModal(slide.src);" role="button">
+                <img class="img-rounded imgtest" ng-src="{{slide.src}}" style="margin:auto;">
+              </a>
+            </uib-slide>
+          </uib-carousel>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row" ng-show="totalItems">
+    <div class="col-xs-12">
+      <div class="center-block">
+        <uib-pagination
+          total-items="totalItems"
+          ng-model="currentPage"
+          ng-change="pageChanged()"
+          max-size="maxSize"
+          boundary-link-numbers="false"
+          rotate="false"
+          items-per-page="itemsPerPage"
+          previous-text="&lsaquo;"
+          next-text="&rsaquo;"
+        ></uib-pagination>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- -->
